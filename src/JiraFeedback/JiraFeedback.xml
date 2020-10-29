@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="JiraFeedback.widget.JiraFeedback" needsEntityContext="false"
+  xmlns="http://www.mendix.com/widget/1.0/">
+  <name>JiraFeedback</name>
+  <description>The description of this widget.</description>
+  <icon />
+  <properties>
+    <property key="collectorId" type="string" required="false" defaultValue="">
+      <caption>Issue collector ID</caption>
+      <category>Common</category>
+      <description></description>
+    </property>
+    <property key="triggerSelector" type="string" required="false">
+      <caption>Custom trigger selector*</caption>
+      <category>Common</category>
+      <description>*Only required when 'Trigger style = Custom'</description>
+    </property>
+  </properties>
+</widget>
