@@ -17,3 +17,7 @@ Copy the collector ID into the widget **Issue collector ID** field in Mendix.
 If you have selected a custom trigger style in Jira, you will need to add a CSS selector in the **Custom trigger selector** Mendix widget parameter.
 
 *This widget was made using the [Mendix widget boilerplate](https://github.com/mendix/AppStoreWidgetBoilerplate/).*
+
+## Screenshots 📸
+![Mendix parameters](/assets/example1.png?raw=true "Example 1")
+![Working example](/assets/example2.png?raw=true "Example 2")
