@@ -1,3 +1,7 @@
+function notNull(any) {
+  return any && any != null && any != undefined && any != ''
+}
+
 define([
   "dojo/_base/declare",
   "mxui/widget/_WidgetBase",
@@ -12,18 +16,40 @@ define([
     // Internal variables.
     _handles: null,
     _contextObj: null,
+    _subscribed: null,
 
     // Properties.
     collectorId: null,
     triggerSelector: null,
+    defaultValues: null,
 
     constructor: function () {
       this._handles = [];
     },
 
     postCreate: function () {
-      var context = this;
       logger.debug(this.id + ".postCreate");
+    },
+
+    update: function (obj, callback) {
+      var context = this;
+      logger.debug(this.id + ".update");
+
+      this._contextObj = obj;
+      this._updateRendering(callback);
+      
+      // Subscribe to changes
+      if (!notNull(context._subscribed) && notNull(context._contextObj)) {
+        context._subscribed = this.subscribe({
+          guid: context._contextObj.getGuid(),
+          callback: function(guid) {
+            mx.data.get({ 
+              guid: guid, 
+              callback: function(data) { context.update(data) }
+            });
+          }
+        })
+      }
 
       // Create button
       jQuery.ajax({
@@ -34,7 +60,7 @@ define([
       });
 
       // Add click trigger to css class
-      if (context.triggerSelector != null && context.triggerSelector != '') {
+      if (notNull(context.triggerSelector)) {
         window.ATL_JQ_PAGE_PROPS = {
           "triggerFunction": function (showCollectorDialog) {
             jQuery(context.triggerSelector).click(function (e) {
@@ -44,13 +70,22 @@ define([
           }
         };
       }
-    },
 
-    update: function (obj, callback) {
-      logger.debug(this.id + ".update");
-
-      this._contextObj = obj;
-      this._updateRendering(callback);
+      // Add default values
+      if (notNull(context.defaultValues) && context.defaultValues.length > 0) {
+        // Consolidate list of objects into a single object
+        const defaultObj = context.defaultValues.reduce(function(obj, field) {
+          var value = null;
+          if (field.valueType === "valueAtt" && notNull(context._contextObj) && notNull(field.valueAtt)) value = context._contextObj.get(field.valueAtt);
+          else if (field.valueType === "valueStr") value = field.valueStr;
+          obj[field.name] = value;
+          return obj;
+        }, {});
+        // Set default values
+        window.ATL_JQ_PAGE_PROPS = $.extend(window.ATL_JQ_PAGE_PROPS, {
+          fieldValues: defaultObj
+        });
+      }
     },
 
     resize: function (box) {

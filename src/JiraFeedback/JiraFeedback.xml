@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="JiraFeedback.widget.JiraFeedback" needsEntityContext="false"
+<widget id="JiraFeedback.widget.JiraFeedback" needsEntityContext="true"
   xmlns="http://www.mendix.com/widget/1.0/">
   <name>JiraFeedback</name>
   <description>The description of this widget.</description>
@@ -14,6 +14,40 @@
       <caption>Custom trigger selector*</caption>
       <category>Common</category>
       <description>*Only required when 'Trigger style = Custom'</description>
+    </property>
+    <property key="defaultValues" type="object" isList="true" required="false">
+      <caption>Default values</caption>
+      <category>Common</category>
+      <description></description>
+      <properties>
+        <property key="name" type="string" required="true">
+          <caption>Field name</caption>
+          <category>Common</category>
+          <description></description>
+        </property>
+        <property key="valueType" type="enumeration" defaultValue="valueAtt">
+          <caption>Field value: Type</caption>
+          <category>Common</category>
+          <description></description>
+          <enumerationValues>
+            <enumerationValue key="valueAtt">Attribute</enumerationValue>
+            <enumerationValue key="valueStr">String</enumerationValue>
+          </enumerationValues>
+        </property>
+        <property key="valueAtt" type="attribute" required="false">
+          <caption>Field value: Attribute</caption>
+          <category>Common</category>
+          <description></description>
+          <attributeTypes>
+            <attributeType name="String" />
+          </attributeTypes>
+        </property>
+        <property key="valueStr" type="string" required="false">
+          <caption>Field value: Fixed</caption>
+          <category>Common</category>
+          <description></description>
+        </property>
+      </properties>
     </property>
   </properties>
 </widget>
