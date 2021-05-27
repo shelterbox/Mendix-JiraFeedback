@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="JiraFeedback.widget.JiraFeedback" needsEntityContext="true"
+<widget id="JiraFeedback.widget.JiraFeedback" needsEntityContext="false"
   xmlns="http://www.mendix.com/widget/1.0/">
   <name>JiraFeedback</name>
   <description>The description of this widget.</description>
