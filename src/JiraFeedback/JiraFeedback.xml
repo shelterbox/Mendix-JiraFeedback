@@ -5,6 +5,11 @@
   <description>The description of this widget.</description>
   <icon />
   <properties>
+    <property key="serverUrl" type="string" required="false" defaultValue="">
+      <caption>Jira server URL</caption>
+      <category>Common</category>
+      <description></description>
+    </property>
     <property key="collectorId" type="string" required="false" defaultValue="">
       <caption>Issue collector ID</caption>
       <category>Common</category>
