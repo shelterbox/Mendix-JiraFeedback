@@ -8,11 +8,24 @@ To integrate your issue collector, you will need to first create one on Jira. He
 2. Fill out all the necessary fields
 3. Submit
 
-Once you have created an issue collector, you will need to get the collector ID. This is found in the URL parameters, look for the **collectorId**
+Once you have created an issue collector, you will need to get the collector URL. This is found in the "Embedding this issue collector" section of the issue collector settings page under the JavaScript tab. Copy the string value of the url property from the snippet:
 
-> Example .../InsertCollectorHelp!default.jspa?projectKey=OAP&collectorId=**86cf8d49**
+```JavaScript
+// Requires jQuery!
+jQuery.ajax({
+    url: "https://shelterbox.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/r5gghz/b/3/e73395c53c3b10fde2303f4bf74ffbf6/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-GB&collectorId=fc1106d0",
+    type: "get",
+    cache: true,
+    dataType: "script"
+});
 
-Copy the collector ID into the widget **Issue collector ID** field in Mendix.
+```
+... to get:
+```JavaScript
+https://shelterbox.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/r5gghz/b/3/e73395c53c3b10fde2303f4bf74ffbf6/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-GB&collectorId=fc1106d0
+```
+
+Paste the collector URL into the widget **Issue collector ID** field in Mendix.
 
 If you have selected a custom trigger style in Jira, you will need to add a CSS selector in the **Custom trigger selector** Mendix widget parameter.
 
