@@ -19,8 +19,7 @@ define([
     _subscribed: null,
 
     // Properties.
-    serverUrl: 'https://shelterbox.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/r5gghz/b/3/e73395c53c3b10fde2303f4bf74ffbf6/',
-    collectorId: null,
+    collectorUrl: null,
     triggerSelector: null,
     defaultValues: null,
 
@@ -54,7 +53,7 @@ define([
 
       // Create button
       jQuery.ajax({
-        url: this.serverUrl + "/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-UK&collectorId=" + this.collectorId,
+        url: this.collectorUrl,
         type: "get",
         cache: true,
         dataType: "script"
